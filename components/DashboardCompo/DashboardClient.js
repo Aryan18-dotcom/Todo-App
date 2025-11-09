@@ -53,6 +53,7 @@ const DashboardClient = () => {
             setLoading({ state: false });
           }, 1500);
         }
+        setLoading({ state: false, message: "Loading..." });
       } catch (err) {
         console.error("Error fetching todos:", err);
       }
