@@ -13,8 +13,40 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Todo App with Nextjs and Mongodb",
-  description: "A simple todo app built with Nextjs and Mongodb",
+  title: "Todo App",
+  description:
+    "A modern Todo App built with Next.js, MongoDB and Framer Motion. Organize your tasks with a clean and responsive interface.",
+
+  metadataBase: new URL("https://todo-app-ashy-three.vercel.app"),
+  alternates: {
+    canonical: "https://todo-app-ashy-three.vercel.app",
+  },
+
+  openGraph: {
+    title: "Todo App - Manage Your Tasks Easily",
+    description:
+      "Track, organize, and complete your tasks using a smooth and intuitive interface.",
+    url: "https://todo-app-ashy-three.vercel.app",
+    siteName: "Todo App",
+    images: [
+      {
+        url: "/banner.png",
+        width: 1200,
+        height: 630,
+        alt: "Todo App Preview Banner",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Todo App - Your Tasks, Organized.",
+    description:
+      "Clean and modern Todo App built with Next.js, MongoDB, and Framer Motion animations.",
+    images: ["/banner.png"],
+  },
 };
 
 export default function RootLayout({ children }) {
