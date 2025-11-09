@@ -7,7 +7,7 @@ export default async function Page({ params }) {
 
   const baseURL = process.env.APP_BASE_URL
 
-  const res = await fetch(`${baseURL}/api/todo/${id}`, {
+  const res = await fetch(`/api/todo/${id}`, {
     cache: "no-store",
   });
 
