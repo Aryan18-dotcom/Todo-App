@@ -37,30 +37,43 @@ const DashboardClient = () => {
   // ✅ Fetch Todos After User Loads
   useEffect(() => {
     if (!user?.userId) return;
+
     const fetchTodos = async () => {
-      setLoading({ state: true, message: "Just a min you got there..." });
+      // Start loading message
+      setLoading({ state: true, message: "Just a min, you got there..." });
+
       try {
         const res = await fetch("/api/todo", {
           method: "GET",
-          headers: { "userId": user.userId } // ✅ Correct Key
+          headers: { "userId": user.userId }
         });
 
         const data = await res.json();
 
         if (data.success) {
+          // Set todos
           setTodos(data.todos.reverse());
+
+          // Small delay for smooth UI transition
           setTimeout(() => {
-            setLoading({ state: false });
+            setLoading({ state: false, message: "" });
           }, 1500);
+
+          return; // prevents running the next setLoading below
         }
-        setLoading({ state: false, message: "Loading..." });
+
+        // If no success
+        setLoading({ state: false, message: "" });
+
       } catch (err) {
         console.error("Error fetching todos:", err);
+        setLoading({ state: false, message: "Failed to load todos" });
       }
     };
 
     fetchTodos();
   }, [user]);
+
 
   // ✅ Compute Dynamic Stats (OUTSIDE useEffect so we can use them in JSX)
   const totalTasks = todos.length;
