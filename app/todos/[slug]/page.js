@@ -6,7 +6,7 @@ export default async function Page({ params }) {
   const id = slug.replace("todo-", "");
 
   const baseURL =
-    process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+    process.env.APP_BASE_URL || "http://localhost:3000";
 
   const res = await fetch(`${baseURL}/api/todo/${id}`, {
     cache: "no-store",
