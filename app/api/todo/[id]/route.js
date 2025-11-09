@@ -7,6 +7,7 @@ export async function GET(request, { params }) {
 		await connectDB();
 
 		const { id } = await params;
+		console.log("GET Todo ID From BackEnd:", id);
 		if (!id) {
 			return Response.json({ success: false, message: "Todo id is required" }, { status: 400 });
 		}

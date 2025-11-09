@@ -1,31 +1,21 @@
+'use server';
 import TodoClient from "./todoClient";
+import NotFoundTodo from "./notFound";
 
 export default async function Page({ params }) {
-  const id = params.slug.replace("todo-", "");
+  const { slug } = await params;
 
   const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
-  const res = await fetch(`${baseURL}/api/todo/${id}`, {
+  const res = await fetch(`${baseURL}/api/todo/${slug}`, {
     method: "GET",
     cache: "no-store",
   });
 
-  if (!res.ok) {
-    return (
-      <div className="w-full text-center mt-20 text-neutral-700">
-        Todo not found.
-      </div>
-    );
-  }
-
   const data = await res.json();
 
   if (!data.success) {
-    return (
-      <div className="w-full text-center mt-20 text-neutral-700">
-        Todo not found.
-      </div>
-    );
+    return <NotFoundTodo />
   }
 
   return <TodoClient todo={data.todo} />;
