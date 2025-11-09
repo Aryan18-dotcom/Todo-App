@@ -182,7 +182,7 @@ const Page = () => {
                     transition={{ duration: 0.5, ease: "easeOut" }}
                   >
                     <Link
-                      href={`/todos/todo-${todo._id}`}
+                      href={`/todos/${todo._id}`}
                       className="block bg-white border border-neutral-200 rounded-xl p-5 shadow-sm 
                 hover:shadow-lg hover:-translate-y-1 transition-all cursor-pointer"
                     >

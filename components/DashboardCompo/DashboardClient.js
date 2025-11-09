@@ -173,7 +173,7 @@ const DashboardClient = () => {
                         show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.35 } }
                       }}
                     >
-                      <Link href={`/todos/todo-${task._id}`} className="flex md:gap-0 gap-3 items-center justify-between rounded-lg mb-2 px-6 py-4 cursor-pointer hover:bg-neutral-300/50 transition">
+                      <Link href={`/todos/${task._id}`} className="flex md:gap-0 gap-3 items-center justify-between rounded-lg mb-2 px-6 py-4 cursor-pointer hover:bg-neutral-300/50 transition">
                         <div className="flex flex-col text-neutral-800">
                           <h3
                             className={`font-bold text-neutral-600 md:text-base text-sm ${task.isCompleted ? "line-through text-neutral-400" : ""
