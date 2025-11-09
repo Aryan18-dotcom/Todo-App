@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { Todo } from "../todoModelPath"; // <-- adjust path correctly
 
 const UserSchema = new mongoose.Schema(
   {
@@ -13,6 +14,19 @@ const UserSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+// ✅ Cascade delete todos when a user is deleted
+UserSchema.pre("findOneAndDelete", async function (next) {
+  try {
+    const user = await this.model.findOne(this.getFilter());
+    if (user) {
+      await Todo.deleteMany({ userId: user._id });
+    }
+    next();
+  } catch (err) {
+    next(err);
+  }
+});
 
 export const User =
   mongoose.models.User || mongoose.model("User", UserSchema);
