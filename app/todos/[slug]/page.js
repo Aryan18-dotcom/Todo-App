@@ -1,15 +1,22 @@
-// app/todos/[slug]/page.js (SERVER COMPONENT)
 import TodoClient from "./todoClient";
 
 export default async function Page({ params }) {
-  const { slug } = await params;
-  const id = slug.replace("todo-", "");
+  const id = params.slug.replace("todo-", "");
 
-  const baseURL = process.env.APP_BASE_URL
+  const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
-  const res = await fetch(`/api/todo/${id}`, {
+  const res = await fetch(`${baseURL}/api/todo/${id}`, {
+    method: "GET",
     cache: "no-store",
   });
+
+  if (!res.ok) {
+    return (
+      <div className="w-full text-center mt-20 text-neutral-700">
+        Todo not found.
+      </div>
+    );
+  }
 
   const data = await res.json();
 
