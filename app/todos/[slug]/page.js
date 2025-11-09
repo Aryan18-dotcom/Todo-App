@@ -1,7 +1,7 @@
 import TodoClient from "./todoClient";
 
 export default async function Page({ params }) {
-  const id = params.slug.replace("todo-", "");
+  const id = params.id;
 
   const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
