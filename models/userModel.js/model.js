@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { Todo } from "../todoModelPath"; // <-- adjust path correctly
+import { Todo } from "../todoModel/model";
 
 const UserSchema = new mongoose.Schema(
   {
