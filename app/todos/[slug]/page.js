@@ -1,11 +1,14 @@
-// app/todos/[slug]/page.js  ✅ SERVER COMPONENT
+// app/todos/[slug]/page.js (SERVER COMPONENT)
 import TodoClient from "./todoClient";
 
 export default async function Page({ params }) {
-  const { slug } = await params; // ✅ params is now defined
+  const { slug } = await params;
   const id = slug.replace("todo-", "");
 
-  const res = await fetch(`/api/todo/${id}`, {
+  const baseURL =
+    process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+
+  const res = await fetch(`${baseURL}/api/todo/${id}`, {
     cache: "no-store",
   });
 
