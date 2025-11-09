@@ -5,7 +5,7 @@ export default async function Page({ params }) {
   const { slug } = await params; // ✅ params is now defined
   const id = slug.replace("todo-", "");
 
-  const res = await fetch(`http://localhost:3000/api/todo/${id}`, {
+  const res = await fetch(`/api/todo/${id}`, {
     cache: "no-store",
   });
 
