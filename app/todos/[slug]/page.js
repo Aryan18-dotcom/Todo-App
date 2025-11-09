@@ -10,14 +10,6 @@ export default async function Page({ params }) {
     cache: "no-store",
   });
 
-  if (!res.ok) {
-    return (
-      <div className="w-full text-center mt-20 text-neutral-700">
-        Todo not found.
-      </div>
-    );
-  }
-
   const data = await res.json();
 
   if (!data.success) {
