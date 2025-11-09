@@ -36,22 +36,37 @@ const Page = () => {
   // ✅ Fetch Todos After User Loads
   useEffect(() => {
     if (!user?.userId) return;
-    setLoading({ state: true, message: "Fetching your todos..." });
+
     const fetchTodos = async () => {
+      // Start loading message
+      setLoading({ state: true, message: "Just a min, you got there..." });
+
       try {
         const res = await fetch("/api/todo", {
           method: "GET",
-          headers: { userId: user.userId },
+          headers: { "userId": user.userId }
         });
 
         const data = await res.json();
+
         if (data.success) {
+          // Set todos
           setTodos(data.todos.reverse());
-          setLoading({ state: false });
+
+          // Small delay for smooth UI transition
+          setTimeout(() => {
+            setLoading({ state: false, message: "" });
+          }, 1500);
+
+          return; // prevents running the next setLoading below
         }
+
+        // If no success
+        setLoading({ state: false, message: "" });
+
       } catch (err) {
-        setLoading({ state: false });
         console.error("Error fetching todos:", err);
+        setLoading({ state: false, message: "Failed to load todos" });
       }
     };
 
